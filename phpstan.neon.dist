@@ -1,0 +1,12 @@
+parameters:
+    level: 0
+    paths:
+        - Command
+        - DataCollector
+        - DependencyInjection
+        - Event
+        - MemoryChecker
+        - Provider
+        - RabbitMq
+        - Resources
+        - OldSoundRabbitMqBundle.php
