@@ -1,5 +1,9 @@
 language: php
 
+env:
+  global:
+    - SYMFONY_VERSION="^5.0"
+
 php:
   - 7.1
   - 7.2
@@ -21,10 +25,6 @@ matrix:
 
   allow_failures:
     - php: nightly
-
-env:
-  global:
-    - SYMFONY_VERSION=""
 
 before_install:
   - phpenv config-rm xdebug.ini || echo "xdebug not available";
