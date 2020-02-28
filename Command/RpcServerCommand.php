@@ -37,7 +37,7 @@ class RpcServerCommand extends BaseRabbitMqCommand
         define('AMQP_DEBUG', (bool) $input->getOption('debug'));
         $amount = $input->getOption('messages');
 
-        if (0 > $amount) {
+        if (0 > (int) $amount) {
             throw new \InvalidArgumentException("The -m option should be null or greater than 0");
         }
 

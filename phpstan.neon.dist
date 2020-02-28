@@ -9,4 +9,5 @@ parameters:
         - Provider
         - RabbitMq
         - Resources
+        - Tests
         - OldSoundRabbitMqBundle.php
