@@ -44,4 +44,9 @@ class MessageDataCollector extends DataCollector
     {
         return $this->data;
     }
+
+    public function reset()
+    {
+        $this->data = [];
+    }
 }
