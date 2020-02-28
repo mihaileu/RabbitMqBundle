@@ -67,21 +67,22 @@ class AMQPConnectionFactory
             return $ref->newInstanceArgs($this->parameters['constructor_args']);
         }
 
-        if ($this->class == 'PhpAmqpLib\Connection\AMQPSocketConnection' || is_subclass_of($this->class , 'PhpAmqpLib\Connection\AMQPSocketConnection')) {
-            return new AMQPSocketConnection(
-                $this->parameters['host'],
-                $this->parameters['port'],
-                $this->parameters['user'],
-                $this->parameters['password'],
-                $this->parameters['vhost'],
-                false,      // insist
-                'AMQPLAIN', // login_method
-                null,       // login_response
-                'en_US',    // locale
-                isset($this->parameters['read_timeout']) ? $this->parameters['read_timeout'] : $this->parameters['read_write_timeout'],
-                $this->parameters['keepalive'],
-                isset($this->parameters['write_timeout']) ? $this->parameters['write_timeout'] : $this->parameters['read_write_timeout'],
-                $this->parameters['heartbeat']
+        if ($this->class == 'PhpAmqpLib\Connection\AMQPSocketConnection' || is_subclass_of($this->class, 'PhpAmqpLib\Connection\AMQPSocketConnection')) {
+            return $ref->newInstanceArgs([
+                    $this->parameters['host'],
+                    $this->parameters['port'],
+                    $this->parameters['user'],
+                    $this->parameters['password'],
+                    $this->parameters['vhost'],
+                    false,      // insist
+                    'AMQPLAIN', // login_method
+                    null,       // login_response
+                    'en_US',    // locale
+                    isset($this->parameters['read_timeout']) ? $this->parameters['read_timeout'] : $this->parameters['read_write_timeout'],
+                    $this->parameters['keepalive'],
+                    isset($this->parameters['write_timeout']) ? $this->parameters['write_timeout'] : $this->parameters['read_write_timeout'],
+                    $this->parameters['heartbeat']
+                ]
             );
         } else {
             return $ref->newInstanceArgs([
