@@ -8,7 +8,7 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 class AMQPConnectionFactory
 {
-    /** @var AbstractConnection */
+    /** @var string */
     private $class;
 
     /** @var array */
@@ -29,7 +29,7 @@ class AMQPConnectionFactory
     /**
      * Constructor
      *
-     * @param AbstractConnection                    $class              FQCN of AMQPConnection class to instantiate.
+     * @param string                                $class              FQCN of AMQPConnection class to instantiate.
      * @param array                                 $parameters         Map containing parameters resolved by
      *                                                                  Extension.
      * @param ConnectionParametersProviderInterface $parametersProvider Optional service providing/overriding
