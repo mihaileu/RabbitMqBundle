@@ -14,7 +14,7 @@ interface DequeuerInterface
     /**
      * Set idle timeout
      *
-     * @param $idleTimeout
+     * @param float $idleTimeout
      *
      * @return void
      */
