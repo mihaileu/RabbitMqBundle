@@ -4,9 +4,7 @@ includes:
 	- vendor/phpstan/phpstan-symfony/extension.neon
 	- vendor/phpstan/phpstan-symfony/rules.neon
 parameters:
-    level: 2
-    autoload_directories:
-        - vendor/symfony
+    level: 3
     paths:
         - Command
         - DataCollector

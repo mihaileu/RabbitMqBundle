@@ -4,12 +4,11 @@ namespace OldSound\RabbitMqBundle\RabbitMq;
 
 use OldSound\RabbitMqBundle\Provider\ConnectionParametersProviderInterface;
 use PhpAmqpLib\Connection\AbstractConnection;
-use PhpAmqpLib\Connection\AMQPSocketConnection;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 class AMQPConnectionFactory
 {
-    /** @var \ReflectionClass */
+    /** @var AbstractConnection */
     private $class;
 
     /** @var array */
@@ -30,7 +29,7 @@ class AMQPConnectionFactory
     /**
      * Constructor
      *
-     * @param string                                $class              FQCN of AMQPConnection class to instantiate.
+     * @param AbstractConnection                    $class              FQCN of AMQPConnection class to instantiate.
      * @param array                                 $parameters         Map containing parameters resolved by
      *                                                                  Extension.
      * @param ConnectionParametersProviderInterface $parametersProvider Optional service providing/overriding
