@@ -17,7 +17,7 @@ class Consumer extends BaseConsumer
     const TIMEOUT_TYPE_GRACEFUL_MAX_EXECUTION = 'graceful-max-execution';
 
     /**
-     * @var int $memoryLimit
+     * @var int|null $memoryLimit
      */
     protected $memoryLimit = null;
 
@@ -45,7 +45,7 @@ class Consumer extends BaseConsumer
     /**
      * Get the memory limit
      *
-     * @return int
+     * @return int|null
      */
     public function getMemoryLimit()
     {
@@ -68,7 +68,7 @@ class Consumer extends BaseConsumer
         $this->setupConsumer();
 
         while (count($this->getChannel()->callbacks)) {
-            $this->dispatchEvent(OnConsumeEvent::NAME, new OnConsumeEvent($this));
+            $this->dispatchEvent(new OnConsumeEvent($this));
             $this->maybeStopConsumer();
 
             /*
@@ -92,7 +92,7 @@ class Consumer extends BaseConsumer
                     }
 
                     $idleEvent = new OnIdleEvent($this);
-                    $this->dispatchEvent(OnIdleEvent::NAME, $idleEvent);
+                    $this->dispatchEvent($idleEvent);
 
                     if ($idleEvent->isForceStop()) {
                         if (null !== $this->getIdleTimeoutExitCode()) {
@@ -126,14 +126,13 @@ class Consumer extends BaseConsumer
 
     protected function processMessageQueueCallback(AMQPMessage $msg, $queueName, $callback)
     {
-        $this->dispatchEvent(BeforeProcessingMessageEvent::NAME,
+        $this->dispatchEvent(
             new BeforeProcessingMessageEvent($this, $msg)
         );
         try {
             $processFlag = call_user_func($callback, $msg);
             $this->handleProcessMessage($msg, $processFlag);
             $this->dispatchEvent(
-                AfterProcessingMessageEvent::NAME,
                 new AfterProcessingMessageEvent($this, $msg)
             );
             $this->logger->debug('Queue message processed', array(

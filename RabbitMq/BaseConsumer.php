@@ -39,6 +39,7 @@ abstract class BaseConsumer extends BaseAmqp implements DequeuerInterface
 
     /**
      * @param int $msgAmount
+     * @throws \ErrorException
      */
     public function start($msgAmount = 0)
     {
