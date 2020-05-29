@@ -68,7 +68,7 @@ class Consumer extends BaseConsumer
         $this->setupConsumer();
 
         while (count($this->getChannel()->callbacks)) {
-            $this->dispatchEvent(new OnConsumeEvent($this));
+            $this->dispatchEvent(OnConsumeEvent::NAME, new OnConsumeEvent($this));
             $this->maybeStopConsumer();
 
             /*
@@ -92,7 +92,7 @@ class Consumer extends BaseConsumer
                     }
 
                     $idleEvent = new OnIdleEvent($this);
-                    $this->dispatchEvent($idleEvent);
+                    $this->dispatchEvent(OnIdleEvent::NAME, $idleEvent);
 
                     if ($idleEvent->isForceStop()) {
                         if (null !== $this->getIdleTimeoutExitCode()) {
@@ -126,13 +126,14 @@ class Consumer extends BaseConsumer
 
     protected function processMessageQueueCallback(AMQPMessage $msg, $queueName, $callback)
     {
-        $this->dispatchEvent(
+        $this->dispatchEvent(BeforeProcessingMessageEvent::NAME,
             new BeforeProcessingMessageEvent($this, $msg)
         );
         try {
             $processFlag = call_user_func($callback, $msg);
             $this->handleProcessMessage($msg, $processFlag);
             $this->dispatchEvent(
+                AfterProcessingMessageEvent::NAME,
                 new AfterProcessingMessageEvent($this, $msg)
             );
             $this->logger->debug('Queue message processed', array(

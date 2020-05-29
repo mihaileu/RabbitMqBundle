@@ -18,3 +18,4 @@ parameters:
         - '#Call to an undefined method Symfony\\Component\\DependencyInjection\\Definition::((setFactoryService)|(setFactoryMethod))\(\)\.#'
         - '#Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::((children)|(append))\(\)\.#'
         - '#Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeParentInterface::((booleanNode)|(scalarNode))\(\)#'
+        - '#Method Symfony\\Contracts\\EventDispatcher\\EventDispatcherInterface::dispatch\(\) invoked with 2 parameters, 1 required\.#'
