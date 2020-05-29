@@ -191,8 +191,8 @@ class BatchConsumer extends BaseAmqp implements DequeuerInterface
     }
 
     /**
-     * @param   int     $deliveryTag
-     * @param   mixed   $processFlag
+     * @param   string|int     $deliveryTag
+     * @param   mixed          $processFlag
      *
      * @return  void
      */
