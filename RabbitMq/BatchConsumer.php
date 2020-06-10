@@ -60,6 +60,11 @@ class BatchConsumer extends BaseAmqp implements DequeuerInterface
     protected $batchCounter = 0;
 
     /**
+     * @var int
+     */
+    protected $consumed = 0;
+
+    /**
      * @var \DateTime|null DateTime after which the consumer will gracefully exit. "Gracefully" means, that
      *      any currently running consumption will not be interrupted.
      */
@@ -121,6 +126,8 @@ class BatchConsumer extends BaseAmqp implements DequeuerInterface
                 }
             }
         }
+
+        return 0;
     }
 
     private function batchConsume()
